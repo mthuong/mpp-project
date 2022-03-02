@@ -41,7 +41,7 @@ public class MainUI {
 
                 String functions = "";
                 for (Permission permission : permissions) {
-                    functions += "\n\t" + permission.getId() + "." + permission.getName();
+                    functions += "\n\t" + permission.getId().getValue() + ". " + permission.getName();
                 }
                 System.out.println("Please choose your action:" + functions);
                 int a = in.nextInt();
