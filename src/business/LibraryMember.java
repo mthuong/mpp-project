@@ -1,6 +1,6 @@
 package business;
 
-public class LibraryMember {
+public class LibraryMember extends Person {
     private String memberId;
     private String fistName;
     private String lastName;
@@ -8,7 +8,8 @@ public class LibraryMember {
     private Address address;
 
     public LibraryMember(String memberId, String firstName, String lastName, String phone, Address address) {
-
+        super(firstName, lastName, phone, address);
+        this.memberId = memberId;
     }
 
     public String getMemberId() {

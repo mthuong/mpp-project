@@ -1,7 +1,10 @@
 package business;
 
-public class Author {
+public class Author extends Person {
+    private String bio;
+
     public Author(String firstName, String lastName, String phone, Address address, String bio) {
-        // TODO: Add credentials
+        super(firstName, lastName, phone, address);
+        this.bio = bio;
     }
 }

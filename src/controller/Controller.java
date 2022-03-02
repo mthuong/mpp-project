@@ -22,7 +22,7 @@ public class Controller {
 
         User user = users.get(userId);
         if (user != null) {
-            if ((user.getPassword().equals(password) && user.getId().equals(userId)) == true) {
+            if ((user.getPassword().equals(password) && user.getId().equals(userId))) {
                 return user.getAuthorization();
             }
         }
