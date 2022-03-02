@@ -1,9 +1,11 @@
+import business.Permission;
 import controller.Controller;
 import dataaccess.Auth;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -20,16 +22,20 @@ public class Application {
 
             Scanner in;
             do {
-                System.out.println("Please choose your action:" +
-                        "\n\t2. Add a new library member to the system." +
-                        "\n\t3. Checkout a book (if available) for a library member." +
-                        "\n\t0. Logout");
+                List<Permission> permissions = Permission.permissionsWithAuth(authorizationLevel);
+
+                String functions = "";
+                for (Permission permission : permissions) {
+                    functions += "\n\t" + permission.getId() + "." + permission.getName();
+                }
+                System.out.println("Please choose your action:" + functions);
 
                 in = new Scanner(System.in);
                 int a = in.nextInt();
                 switch (a) {
                     case 2: {
-                        // TODO: Use case #2
+                        // Add a new library member to the system.
+                        addNewLibraryMember();
                         break;
                     }
                     case 3: {
@@ -62,5 +68,10 @@ public class Application {
         System.out.println("Authorization level: " + authorization);
 
         return authorization;
+    }
+
+    static void addNewLibraryMember() {
+        System.out.println("Add new library member");
+        System.out.println("Enter ");
     }
 }
