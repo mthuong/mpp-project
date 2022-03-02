@@ -14,6 +14,11 @@ public class Permission {
         this.name = name;
     }
 
+    /**
+     * Factory method to get permissions base on Authorizationn
+     * @param authorization
+     * @return List of permissions for authorization
+     */
     public static List<Permission> permissionsWithAuth(Auth authorization) {
         List<Permission> permissions = new ArrayList<>();
         switch (authorization) {

@@ -28,7 +28,7 @@ public class Application {
                 for (Permission permission : permissions) {
                     functions += "\n\t" + permission.getId() + "." + permission.getName();
                 }
-                System.out.println("Please choose your action:" + functions);
+                System.out.println("Please choose function:" + functions);
 
                 in = new Scanner(System.in);
                 int a = in.nextInt();
