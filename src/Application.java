@@ -1,24 +1,26 @@
-import business.Address;
-import business.Author;
-import business.Book;
-import business.Permission;
+import business.*;
 import controller.BookController;
-import controller.Controller;
+import controller.AuthenticateController;
+import controller.LibraryMemberController;
 import dataaccess.Auth;
-import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
+import exceptions.ExistingMemberIdException;
+import exceptions.MissingRequiredInformationException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Application {
     private static final BookController bookController;
     private static final DataAccessFacade dataAccessFacade;
+    private static final LibraryMemberController libraryMemberController;
 
     static  {
         dataAccessFacade = new DataAccessFacade();
         bookController = new BookController(dataAccessFacade);
+        libraryMemberController = new LibraryMemberController(dataAccessFacade);
     }
 
     public static void main(String[] args) {
@@ -80,7 +82,7 @@ public class Application {
         System.out.print("Enter your password: ");
         String password = in.nextLine();
 
-        Controller ctr = new Controller();
+        AuthenticateController ctr = new AuthenticateController();
         Auth authorization = ctr.login(userId, password);
         System.out.println("Authorization level: " + authorization);
 
@@ -88,33 +90,63 @@ public class Application {
     }
 
     static void addNewLibraryMember() {
+        HashMap<String, LibraryMember> members = dataAccessFacade.readMemberMap();
+        System.out.println(members.toString());
+
         Scanner in = new Scanner((System.in));
         System.out.println("Add new library member");
-        System.out.println("Enter member ID: ");
+        System.out.print("Enter member ID: ");
         String memberId = in.nextLine();
 
-        System.out.println("Enter first name: ");
+        System.out.print("Enter first name: ");
         String firstName = in.nextLine();
 
-        System.out.println("Enter last name: ");
+        System.out.print("Enter last name: ");
         String lastName = in.nextLine();
 
-        System.out.println("Enter street: ");
+        // Address
+        System.out.print("Enter street: ");
         String street = in.nextLine();
 
-        System.out.println("Enter city: ");
+        System.out.print("Enter city: ");
         String city = in.nextLine();
 
-        System.out.println("Enter state: ");
+        System.out.print("Enter state: ");
         String state = in.nextLine();
 
-        System.out.println("Enter zip: ");
+        System.out.print("Enter zip: ");
         String zip = in.nextLine();
 
-        System.out.println("Enter telephone: ");
+        System.out.print("Enter telephone: ");
         String telephone = in.nextLine();
 
+        Address address = new Address(street, city, state, zip);
+        LibraryMember member = new LibraryMember(memberId, firstName, lastName, telephone, address);
 
+        do {
+            try {
+                libraryMemberController.addLibraryMember(member);
+                break;
+            } catch (MissingRequiredInformationException e) {
+                handleMemberIdException(member, e.getErrors());
+            } catch (ExistingMemberIdException e) {
+                handleMemberIdException(member, e.getErrors());
+            }
+        } while (true);
+
+        System.out.println("Added a new library member successfully!\n" + member.toString());
+    }
+
+    private static void handleMemberIdException(LibraryMember member, HashMap<String, String> errors) {
+        Scanner in = new Scanner(System.in);
+        errors.keySet().forEach(key -> {
+            System.out.println(errors.get(key));
+            if (key == "memberId") {
+                System.out.print("Enter member ID: ");
+                String id = in.nextLine();
+                member.setMemberId(id);
+            }
+        });
     }
 
     static void addNewBook() {

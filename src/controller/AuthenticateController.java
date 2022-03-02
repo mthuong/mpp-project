@@ -6,7 +6,14 @@ import dataaccess.User;
 
 import java.util.HashMap;
 
-public class Controller {
+public class AuthenticateController {
+    private final DataAccessFacade dataAccess;
+
+    public AuthenticateController() {
+        DataAccessFacade dataAccess = new DataAccessFacade();
+        this.dataAccess = dataAccess;
+    }
+
     /**
      * Login with credential
      * @param userId user id
@@ -15,7 +22,6 @@ public class Controller {
      */
     public Auth login(String userId, String password) {
         // Get all users
-        DataAccessFacade dataAccess = new DataAccessFacade();
         HashMap<String, User> users = dataAccess.readUserMap();
 
         System.out.println(users.toString());
