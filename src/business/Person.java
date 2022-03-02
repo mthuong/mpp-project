@@ -1,10 +1,8 @@
 package business;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-    @Serial
     private static final long serialVersionUID = 6898663745395794106L;
     private String firstName;
     private String lastName;
