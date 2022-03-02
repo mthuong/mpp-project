@@ -3,7 +3,7 @@ import controller.BookController;
 import controller.LibraryMemberController;
 import controller.SecurityController;
 import dataaccess.DataAccessFacade;
-import ui.UI;
+import ui.MainUI;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,6 +12,6 @@ public class Application {
         BookController bookController = new BookController(dataAccessFacade);
         LibraryMemberController libraryMemberController = new LibraryMemberController(dataAccessFacade);
 
-        new UI(securityController, bookController, libraryMemberController).start();
+        new MainUI(securityController, bookController, libraryMemberController).start();
     }
 }
