@@ -71,7 +71,32 @@ public class Application {
     }
 
     static void addNewLibraryMember() {
+        Scanner in = new Scanner((System.in));
         System.out.println("Add new library member");
-        System.out.println("Enter ");
+        System.out.println("Enter member ID: ");
+        String memberId = in.nextLine();
+
+        System.out.println("Enter first name: ");
+        String firstName = in.nextLine();
+
+        System.out.println("Enter last name: ");
+        String lastName = in.nextLine();
+
+        System.out.println("Enter street: ");
+        String street = in.nextLine();
+
+        System.out.println("Enter city: ");
+        String city = in.nextLine();
+
+        System.out.println("Enter state: ");
+        String state = in.nextLine();
+
+        System.out.println("Enter zip: ");
+        String zip = in.nextLine();
+
+        System.out.println("Enter telephone: ");
+        String telephone = in.nextLine();
+
+
     }
 }
