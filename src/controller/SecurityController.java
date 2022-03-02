@@ -12,6 +12,7 @@ public class SecurityController {
     public SecurityController(DataAccessFacade dataAccessFacade) {
         this.dataAccessFacade = dataAccessFacade;
     }
+
     /**
      * Login with credential
      * @param userId user id
@@ -21,8 +22,7 @@ public class SecurityController {
     public Auth login(String userId, String password) {
         // Get all users
         HashMap<String, User> users = dataAccessFacade.readUserMap();
-
-        System.out.println(users.toString());
+//        System.out.println(users.toString());
 
         User user = users.get(userId);
         if (user != null) {

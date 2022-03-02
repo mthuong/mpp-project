@@ -1,24 +1,27 @@
 package ui;
 
-import business.Address;
-import business.Author;
-import business.Book;
-import business.Permission;
+import business.*;
 import controller.BookController;
+import controller.LibraryMemberController;
 import controller.SecurityController;
 import dataaccess.Auth;
+import exceptions.ExistingMemberIdException;
+import exceptions.MissingRequiredInformationException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class UI {
     private final BookController bookController;
     private final SecurityController securityController;
+    private final LibraryMemberController libraryMemberController;
 
-    public UI(SecurityController securityController, BookController bookController) {
+    public UI(SecurityController securityController, BookController bookController, LibraryMemberController libraryMemberController) {
         this.securityController = securityController;
         this.bookController = bookController;
+        this.libraryMemberController = libraryMemberController;
     }
 
     public void start() {
@@ -55,6 +58,11 @@ public class UI {
                         break;
                     }
 
+                    case 4: {
+                        // TODO: Use case #4
+                        break;
+                    }
+
                     case 5: {
                         addNewBook();
                         break;
@@ -87,8 +95,61 @@ public class UI {
     }
 
     void addNewLibraryMember() {
+//        HashMap<String, LibraryMember> members = dataAccessFacade.readMemberMap();
+//        System.out.println(members.toString());
+
+        Scanner in = new Scanner((System.in));
         System.out.println("Add new library member");
-        System.out.println("Enter ");
+        System.out.print("Enter member ID: ");
+        String memberId = in.nextLine();
+
+        System.out.print("Enter first name: ");
+        String firstName = in.nextLine();
+
+        System.out.print("Enter last name: ");
+        String lastName = in.nextLine();
+
+        // Address
+        System.out.print("Enter street: ");
+        String street = in.nextLine();
+
+        System.out.print("Enter city: ");
+        String city = in.nextLine();
+
+        System.out.print("Enter state: ");
+        String state = in.nextLine();
+
+        System.out.print("Enter zip: ");
+        String zip = in.nextLine();
+
+        System.out.print("Enter telephone: ");
+        String telephone = in.nextLine();
+
+        Address address = new Address(street, city, state, zip);
+        LibraryMember member = new LibraryMember(memberId, firstName, lastName, telephone, address);
+
+        do {
+            try {
+                libraryMemberController.addLibraryMember(member);
+                break;
+            } catch (MissingRequiredInformationException | ExistingMemberIdException e) {
+                handleMemberIdException(member, e.getErrors());
+            }
+        } while (true);
+
+        System.out.println("Added a new library member successfully!\n" + member.toString());
+    }
+
+    private void handleMemberIdException(LibraryMember member, HashMap<String, String> errors) {
+        Scanner in = new Scanner(System.in);
+        errors.keySet().forEach(key -> {
+            System.out.println(errors.get(key));
+            if (key == "memberId") {
+                System.out.print("Enter member ID: ");
+                String id = in.nextLine();
+                member.setMemberId(id);
+            }
+        });
     }
 
     void addNewBook() {
