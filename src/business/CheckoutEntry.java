@@ -11,12 +11,12 @@ public class CheckoutEntry {
     CheckoutEntry(BookCopy bookcopy){
         this.bookcopy = bookcopy;
         this.checkoutDate = LocalDate.now();
-        //this.dueDate = this.checkoutDate.plusDays(this.bookcopy.getBook().getMaxCheckoutLength());
+        this.dueDate = this.checkoutDate.plusDays(this.bookcopy.getBook().getMaxCheckoutLength());
     }
 
     @Override
 	public String toString() {
-		return "CheckoutEntry:  \nbook: " + bookcopy + "\ncheckoutDate: " + checkoutDate + "\ndueDate: " + dueDate + "\n\n";
+		return "CheckoutEntry:  \nbook: " + bookcopy.getBook().getTitle() + "\ncheckoutDate: " + checkoutDate + "\ndueDate: " + dueDate + "\n\n";
 	}
 
 	public BookCopy getBookCopy() {

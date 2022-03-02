@@ -38,6 +38,4 @@ public class LibraryMember extends Person {
 		return checkoutRecord;
 	}
 
-
-
 }

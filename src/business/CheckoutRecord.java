@@ -10,8 +10,10 @@ public class CheckoutRecord {
         this.libraryMember = libraryMember;
     }
 
-    public void add(BookCopy book) {
-        this.entries.add(new CheckoutEntry(book));
+    public CheckoutEntry add(BookCopy book) {
+        CheckoutEntry ce = new CheckoutEntry(book);
+        this.entries.add(ce);
+        return ce;
     }
 
     @Override
