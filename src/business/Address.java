@@ -1,10 +1,9 @@
 package business;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-    @Serial
+
     private static final long serialVersionUID = 5264046647570888372L;
     private String street;
     private String city;

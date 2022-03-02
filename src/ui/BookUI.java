@@ -4,10 +4,10 @@ import business.Address;
 import business.Author;
 import business.Book;
 import controller.BookController;
+import exceptions.CheckoutBookException;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class BookUI {
     private final BookController bookController;
@@ -67,5 +67,59 @@ public class BookUI {
 
         bookController.addNewBook(new Book(isbn, title, maxCheckoutLength, authors));
         System.out.println("Added a new book successfully!");
+    }
+    void checkoutBook() {
+        System.out.println("Checking out a book ...");
+        do {
+            try{
+                System.out.print("Enter Library Member ID: ");
+                String memberID = in.nextLine();
+
+                System.out.print("Enter ISBN: ");
+                String isbn = in.nextLine();
+              
+                String value = bookController.checkoutBook(memberID,isbn);
+                System.out.println("Success.... \n");
+                System.out.println("--------------------");
+                System.out.println("Checkout Record >>>");
+                System.out.println(value);
+                System.out.println("--------------------");
+                break;
+            }catch(CheckoutBookException e){
+                handleAddBookException(e.getErrors());
+            }
+        } while (true);
+    }
+    void addBookCopy() {
+        System.out.println("Checking out a book ...");
+        do {
+            try{
+                System.out.print("Enter ISBN: ");
+                String isbn = in.nextLine();
+              
+                String value = bookController.addCopy(isbn);
+                System.out.println("Success.... \n");
+                System.out.println("--------------------");
+                System.out.println(value);
+                System.out.println("--------------------");
+                break;
+            }catch(CheckoutBookException e){
+                handleAddBookException(e.getErrors());
+            }
+        } while (true);
+    }
+    private void handleAddBookException(HashMap<String, String> errors) {
+        for (Map.Entry<String,String> e : errors.entrySet()) {
+            if(e.getKey()=="memberId"){
+                System.out.println("Member ID not found! Please Enter Again! ");
+            }
+            if(e.getKey()=="bookcopy"){
+                System.out.println("Book copy not available! ");
+            }
+            if(e.getKey()=="book"){
+                System.out.println("Incorrect ISBN number for the book ");
+            }
+        }
+       
     }
 }

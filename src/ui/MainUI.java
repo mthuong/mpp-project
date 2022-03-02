@@ -53,12 +53,14 @@ public class MainUI {
                         break;
                     }
                     case 3: {
-                        // TODO: Use case #3
+                        // checkout book
+                        bookUI.checkoutBook();
                         break;
                     }
 
                     case 4: {
-                        // TODO: Use case #4
+                        // add copy to existing book
+                        bookUI.addBookCopy();
                         break;
                     }
 

@@ -1,13 +1,14 @@
 package business;
 
-import java.io.Serial;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.net.ssl.TrustManagerFactory;
+
 public class Book implements Serializable {
-    @Serial
     private static final long serialVersionUID = 6110690276685962829L;
     private String isbn;
     private String title;
@@ -34,7 +35,13 @@ public class Book implements Serializable {
         return maxCheckoutLength;
     }
 
-    public void addCopy() {
-        bookCopies.add(new BookCopy(UUID.randomUUID().toString()));
+    public String addCopy() {
+        String uid = UUID.randomUUID().toString();
+        bookCopies.add(new BookCopy(uid,this,true));
+        return uid;
     }
+    public List<BookCopy> getCopies(){
+        return bookCopies;
+    }
+    
 }

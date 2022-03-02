@@ -1,16 +1,17 @@
 package business;
 
-import java.io.Serial;
+import java.util.*;
 
 public class LibraryMember extends Person {
-    @Serial
     private static final long serialVersionUID = -5194813788730605865L;
 
     private String memberId;
+    private CheckoutRecord checkoutRecord;
 
     public LibraryMember(String memberId, String firstName, String lastName, String phone, Address address) {
         super(firstName, lastName, phone, address);
         this.memberId = memberId;
+        this.checkoutRecord = null;
     }
 
     public String getMemberId() {
@@ -29,5 +30,12 @@ public class LibraryMember extends Person {
                 '}';
     }
 
+    public void setRecord(CheckoutRecord record) {
+		this.checkoutRecord = record;
+	}
+	
+	public CheckoutRecord getRecord() {
+		return checkoutRecord;
+	}
 
 }
