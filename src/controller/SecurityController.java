@@ -6,12 +6,11 @@ import dataaccess.User;
 
 import java.util.HashMap;
 
-public class AuthenticateController {
-    private final DataAccessFacade dataAccess;
+public class SecurityController {
+    private final DataAccessFacade dataAccessFacade;
 
-    public AuthenticateController() {
-        DataAccessFacade dataAccess = new DataAccessFacade();
-        this.dataAccess = dataAccess;
+    public SecurityController(DataAccessFacade dataAccessFacade) {
+        this.dataAccessFacade = dataAccessFacade;
     }
 
     /**
@@ -22,9 +21,8 @@ public class AuthenticateController {
      */
     public Auth login(String userId, String password) {
         // Get all users
-        HashMap<String, User> users = dataAccess.readUserMap();
-
-        System.out.println(users.toString());
+        HashMap<String, User> users = dataAccessFacade.readUserMap();
+//        System.out.println(users.toString());
 
         User user = users.get(userId);
         if (user != null) {
