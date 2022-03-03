@@ -61,9 +61,11 @@ public class BookController {
         CheckoutRecord record = (member.getRecord() == null) ? new CheckoutRecord() : member.getRecord();
 		CheckoutEntry cr = record.add(copy);
 		member.setRecord(record);
+        dataAccessFacade.saveNewMember(member);
+        dataAccessFacade.saveNewBook(copy.getBook());
         return cr.toString();
     }
-
+    
     protected Boolean checkExistingMemberId(String memberId) {
         
         LibraryMember member = dataAccessFacade.getMember(memberId);
