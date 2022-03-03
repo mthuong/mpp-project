@@ -23,9 +23,15 @@ public class BookController {
         HashMap<String, String> errors = new HashMap<>();
 		Book book = this.getBook(ISBN);
         
-
-        if (errors != null && errors.size() > 0) {
+        if (!checkExistingMemberId(memberID)) {
             errors.put("memberId", "Member id not found");
+        }
+
+        if(book==null){
+            errors.put("book","Inncorrect book ISBN");
+        }
+
+        if(errors.size()>0){
             throw new CheckoutBookException(errors);
         }
 
@@ -36,7 +42,7 @@ public class BookController {
         Boolean bookExist = false;
 	
         List<BookCopy> bc = book.getCopies();
-        bookExist = true;
+        
         if(bc.size()>0){
             for(int i=0;i<bc.size();i++){
                 if(bc.get(i).checkAvailable()){
@@ -47,10 +53,7 @@ public class BookController {
             
         }
         
-        if(!bookExist){
-            errors.put("book","Inncorrect book ISBN");
-            throw new CheckoutBookException(errors);
-        }
+       
         if(copy == null){
             errors.put("bookcopy","Book copy not available");
             throw new CheckoutBookException(errors);
@@ -66,7 +69,7 @@ public class BookController {
         LibraryMember member = dataAccessFacade.getMember(memberId);
        
         if (member == null){
-            
+            System.out.println("here");
             return false;
         }
        return true;
