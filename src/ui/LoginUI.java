@@ -6,12 +6,11 @@ import dataaccess.Auth;
 
 import java.util.Scanner;
 
-public class LoginUI {
+public class LoginUI extends BaseUI {
     private final SecurityController securityController;
-    private final Scanner in;
 
     public LoginUI(Scanner in, SecurityController securityController) {
-        this.in = in;
+        super(in);
         this.securityController = securityController;
     }
 

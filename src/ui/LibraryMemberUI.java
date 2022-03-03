@@ -11,12 +11,11 @@ import exceptions.MissingRequiredInformationException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class LibraryMemberUI {
+public class LibraryMemberUI extends BaseUI {
     private final LibraryMemberController libraryMemberController;
-    private final Scanner in;
 
     public LibraryMemberUI(Scanner in, LibraryMemberController libraryMemberController) {
-        this.in = in;
+        super(in);
         this.libraryMemberController = libraryMemberController;
     }
 

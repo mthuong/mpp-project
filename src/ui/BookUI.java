@@ -3,18 +3,17 @@ package ui;
 import business.Address;
 import business.Author;
 import business.Book;
+import controller.BaseController;
 import controller.BookController;
 import exceptions.CheckoutBookException;
 
 import java.util.*;
 import java.util.List;
 
-public class BookUI {
+public class BookUI extends BaseUI {
     private final BookController bookController;
-    private final Scanner in;
-
-    public BookUI(Scanner in, BookController bookController) {
-        this.in = in;
+    BookUI(Scanner scanner, BookController bookController) {
+        super(scanner);
         this.bookController = bookController;
     }
 

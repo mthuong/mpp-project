@@ -1,17 +1,16 @@
 package controller;
 
 import business.LibraryMember;
+import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import exceptions.ExistingMemberIdException;
 import exceptions.MissingRequiredInformationException;
 
 import java.util.HashMap;
 
-public class LibraryMemberController {
-    private final DataAccessFacade dataAccess;
-
-    public LibraryMemberController(DataAccessFacade dataAccessFacade) {
-        this.dataAccess = dataAccessFacade;
+public class LibraryMemberController extends BaseController {
+    public LibraryMemberController(DataAccess dataAccess) {
+        super(dataAccess);
     }
 
     public LibraryMember addLibraryMember(LibraryMember member) throws MissingRequiredInformationException, ExistingMemberIdException {

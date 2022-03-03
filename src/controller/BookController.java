@@ -7,16 +7,12 @@ import business.BookCopy;
 import business.CheckoutEntry;
 import business.CheckoutRecord;
 import business.LibraryMember;
-import dataaccess.DataAccessFacade;
+import dataaccess.DataAccess;
 import exceptions.CheckoutBookException;
 
-public class BookController {
-    private final DataAccessFacade dataAccessFacade;
-
-
-    public BookController(DataAccessFacade dataAccessFacade) {
-        this.dataAccessFacade = dataAccessFacade;
-
+public class BookController extends BaseController {
+    public BookController(DataAccess dataAccess) {
+        super(dataAccess);
     }
 
     public String checkoutBook(String memberID,String ISBN) throws CheckoutBookException{
@@ -35,7 +31,7 @@ public class BookController {
             throw new CheckoutBookException(errors);
         }
 
-        LibraryMember member = dataAccessFacade.getMember(memberID);
+        LibraryMember member = dataAccess.getMember(memberID);
 
         BookCopy copy = null;
 
@@ -61,14 +57,14 @@ public class BookController {
         CheckoutRecord record = (member.getRecord() == null) ? new CheckoutRecord() : member.getRecord();
 		CheckoutEntry cr = record.add(copy);
 		member.setRecord(record);
-        dataAccessFacade.saveNewMember(member);
-        dataAccessFacade.saveNewBook(copy.getBook());
+        dataAccess.saveNewMember(member);
+        dataAccess.saveNewBook(copy.getBook());
         return cr.toString();
     }
     
     protected Boolean checkExistingMemberId(String memberId) {
         
-        LibraryMember member = dataAccessFacade.getMember(memberId);
+        LibraryMember member = dataAccess.getMember(memberId);
        
         if (member == null){
             System.out.println("here");
@@ -79,7 +75,7 @@ public class BookController {
 
     public void addNewBookHandler(Book book) {
         validate(book);
-        dataAccessFacade.saveNewBook(book);
+        dataAccess.saveNewBook(book);
     }
 
     public String addCopy(String ISBN) throws CheckoutBookException{
@@ -91,12 +87,12 @@ public class BookController {
         }
         
         String result =  book.addCopy();
-        dataAccessFacade.saveNewBook(book);
+        dataAccess.saveNewBook(book);
         return "Book: "+book.getTitle()+"\n"+"Copies: "+book.getCopies().size()+"\n"+"Added Copy: "+result;
     }
 
     public Book getBook(String isbn) {
-        Collection<Book> books = dataAccessFacade.readBooksMap().values();
+        Collection<Book> books = dataAccess.readBooksMap().values();
         Book book = null;
         for (Book b : books) {
             if (b.getIsbn() != null && b.getIsbn().equals(isbn.trim())) {
