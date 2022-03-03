@@ -92,7 +92,7 @@ public class BookController extends BaseController {
     }
 
     public Book getBook(String isbn) {
-        Collection<Book> books = dataAccess.readBooksMap().values();
+        Collection<Book> books = dataAccess.getBooksMap().values();
         Book book = null;
         for (Book b : books) {
             if (b.getIsbn() != null && b.getIsbn().equals(isbn.trim())) {

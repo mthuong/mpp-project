@@ -14,7 +14,10 @@ import business.LibraryMember;
 
 
 public class DataAccessFacade implements DataAccess {
-	
+	private static HashMap<String, Book> bookMap;
+	private static HashMap<String, LibraryMember> libraryMemberMap;
+	private static HashMap<String, User> userMap;
+
 	enum StorageType {
 		BOOKS, MEMBERS, USERS;
 	}
@@ -26,46 +29,57 @@ public class DataAccessFacade implements DataAccess {
 
 	//implement: other save operations
 	public void saveNewMember(LibraryMember member) {
-		HashMap<String, LibraryMember> mems = readMemberMap();
+		HashMap<String, LibraryMember> mems = getMemberMap();
 		String memberId = member.getMemberId();
 		mems.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, mems);	
 	}
 
 	public LibraryMember getMember(String memberId) {
-		HashMap<String, LibraryMember> mems = readMemberMap();
+		HashMap<String, LibraryMember> mems = getMemberMap();
 		return mems.get(memberId);
 	}
 
 	@Override
 	public void saveNewBook(Book book) {
-		HashMap<String, Book> booksMap = readBooksMap();
+		HashMap<String, Book> booksMap = getBooksMap();
 		String isbn = book.getIsbn();
 		booksMap.put(isbn, book);
 		saveToStorage(StorageType.BOOKS, booksMap);
 	}
 
 	@SuppressWarnings("unchecked")
-	public  HashMap<String,Book> readBooksMap() {
+	public  HashMap<String,Book> getBooksMap() {
 		//Returns a Map with name/value pairs being
 		//   isbn -> Book
-		return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
+		if (bookMap == null) {
+			bookMap = (HashMap<String, Book>) readFromStorage(StorageType.BOOKS);
+		}
+
+		return bookMap;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public HashMap<String, LibraryMember> readMemberMap() {
+	public HashMap<String, LibraryMember> getMemberMap() {
 		//Returns a Map with name/value pairs being
 		//   memberId -> LibraryMember
-		return (HashMap<String, LibraryMember>) readFromStorage(
-				StorageType.MEMBERS);
+		if (libraryMemberMap == null) {
+			libraryMemberMap = (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBERS);
+		}
+
+		return libraryMemberMap;
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	public HashMap<String, User> readUserMap() {
+	public HashMap<String, User> getUserMap() {
 		//Returns a Map with name/value pairs being
 		//   userId -> User
-		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
+		if (userMap == null) {
+			userMap =  (HashMap<String, User>) readFromStorage(StorageType.USERS);
+		}
+
+		return userMap;
 	}
 	
 	

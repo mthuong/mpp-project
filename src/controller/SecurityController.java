@@ -2,7 +2,6 @@ package controller;
 
 import dataaccess.Auth;
 import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 import java.util.HashMap;
@@ -20,7 +19,7 @@ public class SecurityController extends BaseController {
      */
     public Auth login(String userId, String password) {
         // Get all users
-        HashMap<String, User> users = dataAccess.readUserMap();
+        HashMap<String, User> users = dataAccess.getUserMap();
 //        System.out.println(users.toString());
 
         User user = users.get(userId);
