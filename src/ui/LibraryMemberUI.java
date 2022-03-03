@@ -5,11 +5,9 @@ import business.Book;
 import business.CheckoutEntry;
 import business.LibraryMember;
 import controller.LibraryMemberController;
-import controller.SecurityController;
 import exceptions.ExistingMemberIdException;
 import exceptions.MissingRequiredInformationException;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -79,7 +77,7 @@ public class LibraryMemberUI {
         });
     }
 
-    void printCheckOutRecord() {
+    void showPrintCheckOutRecordUI() {
         System.out.println("Print the checkout record of library member");
         while (true) {
             System.out.print("Enter member ID: ");
@@ -87,11 +85,10 @@ public class LibraryMemberUI {
 
             try {
                 LibraryMember libraryMember = libraryMemberController.findMemberId(memberId);
-
-                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("-".repeat(134));
                 System.out.printf("%10s %30s %70s %20s", "BOOK ISBN", "BOOK TITLE", "CHECKOUT DATE", "DUE DATE");
                 System.out.println();
-                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("-".repeat(134));
                 if (libraryMember.getRecord() != null && libraryMember.getRecord().getEntries() != null) {
                     for (CheckoutEntry checkoutEntry : libraryMember.getRecord().getEntries()) {
                         Book book = checkoutEntry.getBookCopy().getBook();
@@ -101,7 +98,7 @@ public class LibraryMemberUI {
                 } else {
                     System.out.println("No records");
                 }
-                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("-".repeat(134));
                 break;
             } catch (Exception ex) {
                 System.out.println("Error: " + ex.getMessage());

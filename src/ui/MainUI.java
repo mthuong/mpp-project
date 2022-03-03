@@ -67,12 +67,12 @@ public class MainUI {
                     }
 
                     case 5: {
-                        bookUI.addNewBook();
+                        bookUI.showAddNewBookUI();
                         break;
                     }
 
                     case 6: {
-                        libraryMemberUI.printCheckOutRecord();
+                        libraryMemberUI.showPrintCheckOutRecordUI();
                         break;
                     }
 

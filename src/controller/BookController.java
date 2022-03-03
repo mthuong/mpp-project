@@ -77,7 +77,7 @@ public class BookController {
        return true;
     }
 
-    public void addNewBook(Book book) {
+    public void addNewBookHandler(Book book) {
         validate(book);
         dataAccessFacade.saveNewBook(book);
     }
