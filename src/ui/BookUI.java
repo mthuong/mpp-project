@@ -122,17 +122,20 @@ public class BookUI {
         } while (true);
     }
     private void handleAddBookException(HashMap<String, String> errors) {
+        String errorMsg = "";
         for (Map.Entry<String,String> e : errors.entrySet()) {
             if(e.getKey()=="memberId"){
-                System.out.println("Member ID not found! Please Enter Again! ");
+                errorMsg += " Member ID not found!";
             }
             if(e.getKey()=="bookcopy"){
-                System.out.println("Book copy not available! ");
+                errorMsg += " Book copy not available!";
             }
             if(e.getKey()=="book"){
-                System.out.println("Incorrect ISBN number for the book ");
+                errorMsg += " Incorrect ISBN number for the book.";
             }
         }
+        errorMsg += " Please Enter Again!";
+        System.out.println(errorMsg);
        
     }
 }
