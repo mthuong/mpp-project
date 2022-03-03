@@ -70,6 +70,12 @@ public class MainUI {
                         bookUI.addNewBook();
                         break;
                     }
+
+                    case 6: {
+                        libraryMemberUI.printCheckOutRecord();
+                        break;
+                    }
+
                     case 0: {
                         // Logout
                         authorizationLevel = null;

@@ -49,4 +49,13 @@ public class LibraryMemberController {
         errors.put("memberId", "Member id " + memberId + " is existing.");
         return errors;
     }
+
+    public LibraryMember findMemberId(String memberId) {
+        LibraryMember member = dataAccess.getMember(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("MemberId is not existing");
+        }
+
+        return member;
+    }
 }

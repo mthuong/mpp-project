@@ -1,12 +1,15 @@
 package ui;
 
 import business.Address;
+import business.Book;
+import business.CheckoutEntry;
 import business.LibraryMember;
 import controller.LibraryMemberController;
 import controller.SecurityController;
 import exceptions.ExistingMemberIdException;
 import exceptions.MissingRequiredInformationException;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -74,5 +77,35 @@ public class LibraryMemberUI {
                 member.setMemberId(id);
             }
         });
+    }
+
+    void printCheckOutRecord() {
+        System.out.println("Print the checkout record of library member");
+        while (true) {
+            System.out.print("Enter member ID: ");
+            String memberId = in.nextLine();
+
+            try {
+                LibraryMember libraryMember = libraryMemberController.findMemberId(memberId);
+
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.printf("%10s %30s %70s %20s", "BOOK ISBN", "BOOK TITLE", "CHECKOUT DATE", "DUE DATE");
+                System.out.println();
+                System.out.println("-----------------------------------------------------------------------------");
+                if (libraryMember.getRecord() != null && libraryMember.getRecord().getEntries() != null) {
+                    for (CheckoutEntry checkoutEntry : libraryMember.getRecord().getEntries()) {
+                        Book book = checkoutEntry.getBookCopy().getBook();
+                        System.out.format("%10s %30s %70s %20s", book.getIsbn(), book.getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate());
+                        System.out.println();
+                    }
+                } else {
+                    System.out.println("No records");
+                }
+                System.out.println("-----------------------------------------------------------------------------");
+                break;
+            } catch (Exception ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+        }
     }
 }
