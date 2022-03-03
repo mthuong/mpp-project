@@ -21,52 +21,65 @@ public class BookUI {
     void addNewBook() {
         System.out.println("Please add a new book");
 
-        System.out.print("Enter ISBN: ");
-        String isbn = in.nextLine();
-
-        System.out.print("Enter book title: ");
-        String title = in.nextLine();
-
-        System.out.print("Enter max checkout length: ");
-        int maxCheckoutLength = in.nextInt(); in.nextLine();
-
-        List<Author> authors = new ArrayList<>();
         while (true) {
-            System.out.print("Enter book author's first name: ");
-            String firstName = in.nextLine();
+            try {
+                System.out.print("Enter ISBN: ");
+                String isbn = in.nextLine();
 
-            System.out.print("Enter book author's last name: ");
-            String lastName = in.nextLine();
+                System.out.print("Enter book title: ");
+                String title = in.nextLine();
 
-            System.out.print("Enter book author's phone: ");
-            String phone = in.nextLine();
+                System.out.print("Enter max checkout length: ");
+                int maxCheckoutLength;
 
-            System.out.print("Enter book author's bio: ");
-            String bio = in.nextLine();
+                try {
+                    maxCheckoutLength = Integer.parseInt(in.nextLine());
+                } catch (Exception ex) {
+                    throw new IllegalArgumentException("Enter a number to max checkout length");
+                }
 
-            System.out.print("Enter book author's street: ");
-            String street = in.nextLine();
+                List<Author> authors = new ArrayList<>();
+                while (true) {
+                    System.out.print("Enter book author's first name: ");
+                    String firstName = in.nextLine();
 
-            System.out.print("Enter book author's city: ");
-            String city = in.nextLine();
+                    System.out.print("Enter book author's last name: ");
+                    String lastName = in.nextLine();
 
-            System.out.print("Enter book author's state: ");
-            String state = in.nextLine();
+                    System.out.print("Enter book author's phone: ");
+                    String phone = in.nextLine();
 
-            System.out.print("Enter book author's zip code: ");
-            String zip = in.nextLine();
+                    System.out.print("Enter book author's bio: ");
+                    String bio = in.nextLine();
 
-            authors.add(new Author(firstName, lastName, phone, new Address(street, city, state, zip), bio));
+                    System.out.print("Enter book author's street: ");
+                    String street = in.nextLine();
 
-            System.out.print("Enter 1 to add another author or 0 to start saving data... ");
-            int flag = in.nextInt();in.nextLine();
-            if (flag == 0) {
-                break;
+                    System.out.print("Enter book author's city: ");
+                    String city = in.nextLine();
+
+                    System.out.print("Enter book author's state: ");
+                    String state = in.nextLine();
+
+                    System.out.print("Enter book author's zip code: ");
+                    String zip = in.nextLine();
+
+                    authors.add(new Author(firstName, lastName, phone, new Address(street, city, state, zip), bio));
+
+                    System.out.print("Enter 1 to add another author or 0 to start verifying and saving data... ");
+                    int flag = in.nextInt();
+                    in.nextLine();
+                    if (flag == 0) {
+                        break;
+                    }
+                }
+
+                bookController.addNewBook(new Book(isbn, title, maxCheckoutLength, authors));
+                System.out.println("Added a new book successfully!");
+            } catch (Exception ex) {
+                System.out.println("Error: " + ex.getMessage());
             }
         }
-
-        bookController.addNewBook(new Book(isbn, title, maxCheckoutLength, authors));
-        System.out.println("Added a new book successfully!");
     }
     void checkoutBook() {
         System.out.println("Checking out a book ...");

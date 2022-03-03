@@ -73,6 +73,7 @@ public class BookController {
     }
 
     public void addNewBook(Book book) {
+        validate(book);
         dataAccessFacade.saveNewBook(book);
     }
 
@@ -89,11 +90,21 @@ public class BookController {
     public Book getBook(String isbn) {
         Collection<Book> books = dataAccessFacade.readBooksMap().values();
         Book book = null;
-        for(Book b:books){
-            if(b.getIsbn()!=null && b.getIsbn().equals(isbn.trim())) {
+        for (Book b : books) {
+            if (b.getIsbn() != null && b.getIsbn().equals(isbn.trim())) {
                 book = b;
             }
         }
         return book;
+    }
+
+    public void validate(Book book) {
+        if (book.getIsbn() == null || book.getIsbn().isEmpty()) {
+            throw new InputMismatchException("ISBN is required");
+        }
+
+        if (book.getTitle() == null || book.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Title is required");
+        }
     }
 }

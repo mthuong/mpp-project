@@ -43,15 +43,17 @@ public class MainUI {
                 for (Permission permission : permissions) {
                     functions += "\n\t" + permission.getId().getValue() + ". " + permission.getName();
                 }
+
                 System.out.println("Please choose your action:" + functions);
-                int a = in.nextInt();
-                in.nextLine();
+                int a = in.nextInt();in.nextLine();
+
                 switch (a) {
                     case 2: {
                         // Add a new library member to the system.
                         libraryMemberUI.addNewLibraryMember();
                         break;
                     }
+
                     case 3: {
                         // checkout book
                         bookUI.checkoutBook();
@@ -68,7 +70,6 @@ public class MainUI {
                         bookUI.addNewBook();
                         break;
                     }
-
                     case 0: {
                         // Logout
                         authorizationLevel = null;

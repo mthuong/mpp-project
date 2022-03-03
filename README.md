@@ -1,3 +1,6 @@
+# Prerequisite
+- Java 17
+
 # MPP Project
 
 Group members:
