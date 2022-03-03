@@ -69,7 +69,7 @@ public class BookController {
         LibraryMember member = dataAccessFacade.getMember(memberId);
        
         if (member == null){
-            System.out.println("here");
+            
             return false;
         }
        return true;

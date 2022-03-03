@@ -12,7 +12,7 @@ public class Book implements Serializable {
     private static final long serialVersionUID = 6110690276685962829L;
     private String isbn;
     private String title;
-    private Integer maxCheckoutLength;
+    private int maxCheckoutLength;
     private List<Author> authors;
     private List<BookCopy> bookCopies = new ArrayList<>();
 
