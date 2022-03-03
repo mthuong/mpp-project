@@ -18,7 +18,7 @@ public class BookUI {
         this.bookController = bookController;
     }
 
-    void addNewBook() {
+    void showAddNewBookUI() {
         System.out.println("Please add a new book");
 
         while (true) {
@@ -74,7 +74,7 @@ public class BookUI {
                     }
                 }
 
-                bookController.addNewBook(new Book(isbn, title, maxCheckoutLength, authors));
+                bookController.addNewBookHandler(new Book(isbn, title, maxCheckoutLength, authors));
                 System.out.println("Added a new book successfully!");
             } catch (Exception ex) {
                 System.out.println("Error: " + ex.getMessage());
