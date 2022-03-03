@@ -92,11 +92,11 @@ public class BookUI {
                 String isbn = in.nextLine();
               
                 String value = bookController.checkoutBook(memberID,isbn);
-                System.out.println("Success.... \n");
+                System.out.println("\nSuccess.... ");
                 System.out.println("--------------------");
                 System.out.println("Checkout Record >>>");
                 System.out.println(value);
-                System.out.println("--------------------");
+                System.out.println("--------------------\n");
                 break;
             }catch(CheckoutBookException e){
                 handleAddBookException(e.getErrors());
@@ -111,10 +111,10 @@ public class BookUI {
                 String isbn = in.nextLine();
               
                 String value = bookController.addCopy(isbn);
-                System.out.println("Success.... \n");
+                System.out.println("\nSuccess....");
                 System.out.println("--------------------");
                 System.out.println(value);
-                System.out.println("--------------------");
+                System.out.println("--------------------\n");
                 break;
             }catch(CheckoutBookException e){
                 handleAddBookException(e.getErrors());

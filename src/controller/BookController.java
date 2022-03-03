@@ -89,7 +89,10 @@ public class BookController {
             errors.put("book","Inncorrect book ISBN");
             throw new CheckoutBookException(errors);
         }
-        return book.addCopy();
+        
+        String result =  book.addCopy();
+        dataAccessFacade.saveNewBook(book);
+        return "Book: "+book.getTitle()+"\n"+"Copies: "+book.getCopies().size()+"\n"+"Added Copy: "+result;
     }
 
     public Book getBook(String isbn) {
