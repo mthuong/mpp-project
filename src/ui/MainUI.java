@@ -37,7 +37,7 @@ public class MainUI {
             } while (authorizationLevel == null);
 
             do {
-                List<Permission> permissions = Permission.permissionsWithAuth(authorizationLevel);
+                List<Permission> permissions = authorizationLevel.getPermissions();
 
                 String functions = "";
                 for (Permission permission : permissions) {
