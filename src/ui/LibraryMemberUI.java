@@ -9,6 +9,7 @@ import exceptions.ExistingMemberIdException;
 import exceptions.MissingRequiredInformationException;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class LibraryMemberUI extends BaseUI {
@@ -64,7 +65,7 @@ public class LibraryMemberUI extends BaseUI {
         System.out.println("Added a new library member successfully!\n" + member.toString());
     }
 
-    private void handleMemberIdException(LibraryMember member, HashMap<String, String> errors) {
+    private void handleMemberIdException(LibraryMember member, Map<String, String> errors) {
         Scanner in = new Scanner(System.in);
         errors.keySet().forEach(key -> {
             System.out.println(errors.get(key));

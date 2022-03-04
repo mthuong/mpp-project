@@ -9,6 +9,7 @@ import business.CheckoutRecord;
 import business.LibraryMember;
 import dataaccess.DataAccess;
 import exceptions.CheckoutBookException;
+import exceptions.MultipleErrorsException;
 
 public class BookController extends BaseController {
     public BookController(DataAccess dataAccess) {
@@ -80,7 +81,11 @@ public class BookController extends BaseController {
     }
 
     public void addNewBookHandler(Book book) {
-        validate(book);
+        Map<String, String> errors = validate(book);
+        if (!errors.isEmpty()) {
+            throw new MultipleErrorsException("Add new book exceptions", errors);
+        }
+
         dataAccess.saveNewBook(book);
     }
 
@@ -97,24 +102,25 @@ public class BookController extends BaseController {
         return "Book: "+book.getTitle()+"\n"+"Copies: "+book.getCopies().size()+"\n"+"Added Copy: "+result;
     }
 
-    public Book getBook(String isbn) {
-        Collection<Book> books = dataAccess.getBooksMap().values();
-        Book book = null;
-        for (Book b : books) {
-            if (b.getIsbn() != null && b.getIsbn().equals(isbn.trim())) {
-                book = b;
-            }
-        }
-        return book;
-    }
+    public Map<String, String> validate(Book book) {
+        Map<String, String> errors = new HashMap<>();
 
-    public void validate(Book book) {
         if (book.getIsbn() == null || book.getIsbn().isEmpty()) {
-            throw new InputMismatchException("ISBN is required");
+            errors.put("ISBN", "ISBN is required");
+        }
+
+        if (dataAccess.getBook(book.getIsbn()) != null) {
+            errors.put("ISBN", "ISBN is existed");
         }
 
         if (book.getTitle() == null || book.getTitle().isEmpty()) {
-            throw new IllegalArgumentException("Title is required");
+            errors.put("Title", "Title is required");
         }
+
+        if (book.getMaxCheckoutLength() < 1) {
+            errors.put("Max checkout length", "Max checkout length should be greater than 1");
+        }
+
+        return errors;
     }
 }

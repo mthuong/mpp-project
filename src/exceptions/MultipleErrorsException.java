@@ -1,16 +1,17 @@
 package exceptions;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class MultipleErrorsException extends Exception {
-    private final HashMap<String, String> errors;
+public class MultipleErrorsException extends RuntimeException {
+    private final Map<String, String> errors;
 
-    protected MultipleErrorsException(String message, HashMap<String, String> errors) {
+    public MultipleErrorsException(String message, Map<String, String> errors) {
         super(message);
         this.errors = errors;
     }
 
-    public HashMap<String, String> getErrors() {
+    public Map<String, String> getErrors() {
         return errors;
     }
 }

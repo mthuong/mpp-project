@@ -6,6 +6,7 @@ import business.Book;
 import controller.BaseController;
 import controller.BookController;
 import exceptions.CheckoutBookException;
+import exceptions.MultipleErrorsException;
 
 import java.util.*;
 import java.util.List;
@@ -34,7 +35,7 @@ public class BookUI extends BaseUI {
                 try {
                     maxCheckoutLength = Integer.parseInt(in.nextLine());
                 } catch (Exception ex) {
-                    throw new IllegalArgumentException("Enter a number to max checkout length");
+                    throw new IllegalArgumentException("Enter a number to Max checkout length");
                 }
 
                 List<Author> authors = new ArrayList<>();
@@ -66,17 +67,19 @@ public class BookUI extends BaseUI {
                     authors.add(new Author(firstName, lastName, phone, new Address(street, city, state, zip), bio));
 
                     System.out.print("Enter 1 to add another author or 0 to start verifying and saving data... ");
-                    int flag = in.nextInt();
-                    in.nextLine();
+                    int flag = in.nextInt();in.nextLine();
                     if (flag == 0) {
                         break;
                     }
                 }
 
                 bookController.addNewBookHandler(new Book(isbn, title, maxCheckoutLength, authors));
-                System.out.println("Added a new book successfully!");
-            } catch (Exception ex) {
+                System.out.println("Added a new book successfully!");break;
+
+            } catch (IllegalArgumentException ex) {
                 System.out.println("Error: " + ex.getMessage());
+            } catch (MultipleErrorsException mex) {
+                handleErrors(mex.getErrors());
             }
         }
     }
@@ -98,7 +101,7 @@ public class BookUI extends BaseUI {
                 System.out.println("--------------------\n");
                 break;
             }catch(CheckoutBookException e){
-                handleAddBookException(e.getErrors());
+                handleErrors(e.getErrors());
             }
         } while (true);
     }
@@ -116,25 +119,8 @@ public class BookUI extends BaseUI {
                 System.out.println("--------------------\n");
                 break;
             }catch(CheckoutBookException e){
-                handleAddBookException(e.getErrors());
+                handleErrors(e.getErrors());
             }
         } while (true);
-    }
-    private void handleAddBookException(HashMap<String, String> errors) {
-        String errorMsg = "";
-        for (Map.Entry<String,String> e : errors.entrySet()) {
-            if(e.getKey()=="memberId"){
-                errorMsg += " Member ID not found!";
-            }
-            if(e.getKey()=="bookcopy"){
-                errorMsg += " Book copy not available!";
-            }
-            if(e.getKey()=="book"){
-                errorMsg += " Incorrect ISBN number for the book.";
-            }
-        }
-        errorMsg += " Please Enter Again!";
-        System.out.println(errorMsg);
-       
     }
 }
