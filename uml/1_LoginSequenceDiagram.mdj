@@ -2088,7 +2088,7 @@
 											"left": 653,
 											"top": 480,
 											"width": 14,
-											"height": 29
+											"height": 49
 										}
 									],
 									"font": "Arial;13;0",
@@ -2630,7 +2630,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -2638,7 +2639,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -2646,7 +2648,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role4"
+					"name": "Role4",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -2654,7 +2657,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role5"
+					"name": "Role5",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -2662,7 +2666,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role6"
+					"name": "Role6",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -2670,7 +2675,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwQUqtpYD1Y="
 					},
-					"name": "Role7"
+					"name": "Role7",
+					"type": ""
 				}
 			]
 		},
@@ -2696,7 +2702,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UwX9jtpvkX4="
 					},
-					"name": "UseCaseDiagram1",
+					"name": "Actors",
 					"ownedViews": [
 						{
 							"_type": "UMLActorView",
@@ -3772,12 +3778,12 @@
 												"$ref": "AAAAAAF/Uyya2d5UIGQ="
 											},
 											"font": "Arial;13;0",
-											"left": 46,
+											"left": 63,
 											"top": 111,
 											"width": 148.83984375,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": 0.5317238101895092,
+											"distance": 19.72308292331602,
 											"hostEdge": {
 												"$ref": "AAAAAAF/Uyya2d5Vqvk="
 											},
@@ -3883,12 +3889,12 @@
 												"$ref": "AAAAAAF/UzC/wd65I88="
 											},
 											"font": "Arial;13;0",
-											"left": 168,
+											"left": 200,
 											"top": 136,
 											"width": 171.9580078125,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": 0.3028847794070252,
+											"distance": 33.52610922848042,
 											"hostEdge": {
 												"$ref": "AAAAAAF/UzC/wd66HT4="
 											},
@@ -3994,12 +4000,12 @@
 												"$ref": "AAAAAAF/UzBPa96jhYs="
 											},
 											"font": "Arial;13;0",
-											"left": 95,
-											"top": 175,
+											"left": 79,
+											"top": 174,
 											"width": 78.04443359375,
 											"height": 13,
-											"alpha": -3.321446185382277,
-											"distance": 55.90169943749474,
+											"alpha": -3.295300203957845,
+											"distance": 71.84705978674423,
 											"hostEdge": {
 												"$ref": "AAAAAAF/UzBPa96kc4k="
 											},
@@ -4105,12 +4111,12 @@
 												"$ref": "AAAAAAF/Uy4MI96BPRA="
 											},
 											"font": "Arial;13;0",
-											"left": 426,
-											"top": 224,
+											"left": 399,
+											"top": 222,
 											"width": 78.04443359375,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": -3.528468500732627,
+											"distance": 29.154759474226502,
 											"hostEdge": {
 												"$ref": "AAAAAAF/Uy4MI96CncY="
 											},
@@ -4216,12 +4222,12 @@
 												"$ref": "AAAAAAF/UzGoAt7WB3c="
 											},
 											"font": "Arial;13;0",
-											"left": 476,
-											"top": 282,
+											"left": 399,
+											"top": 280,
 											"width": 78.04443359375,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": -3.2834897263757776,
+											"distance": 77.78174593052023,
 											"hostEdge": {
 												"$ref": "AAAAAAF/UzGoA97XcuE="
 											},
@@ -4988,7 +4994,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -4996,7 +5003,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -5004,7 +5012,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role4"
+					"name": "Role4",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -5012,7 +5021,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role5"
+					"name": "Role5",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -5020,7 +5030,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role6"
+					"name": "Role6",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -5028,7 +5039,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF/UycMLN0gsVE="
 					},
-					"name": "Role7"
+					"name": "Role7",
+					"type": ""
 				}
 			]
 		}
