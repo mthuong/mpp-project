@@ -28,55 +28,6 @@
 							"name": "1_LoginSequenceDiagram",
 							"ownedViews": [
 								{
-									"_type": "UMLFrameView",
-									"_id": "AAAAAAF/UwQUq9pb8kU=",
-									"_parent": {
-										"$ref": "AAAAAAF/UwQUqtpaMqE="
-									},
-									"model": {
-										"$ref": "AAAAAAF/UwQUqtpaMqE="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAF/UwQUq9pcJHc=",
-											"_parent": {
-												"$ref": "AAAAAAF/UwQUq9pb8kU="
-											},
-											"font": "Arial;13;0",
-											"left": 72.72998046875,
-											"top": 13,
-											"width": 154.943359375,
-											"height": 13,
-											"text": "1_LoginSequenceDiagram"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAF/UwQUq9pdUlI=",
-											"_parent": {
-												"$ref": "AAAAAAF/UwQUq9pb8kU="
-											},
-											"font": "Arial;13;1",
-											"left": 53,
-											"top": 13,
-											"width": 14.72998046875,
-											"height": 13,
-											"text": "sd"
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 48,
-									"top": 8,
-									"width": 769,
-									"height": 657,
-									"nameLabel": {
-										"$ref": "AAAAAAF/UwQUq9pcJHc="
-									},
-									"frameTypeLabel": {
-										"$ref": "AAAAAAF/UwQUq9pdUlI="
-									}
-								},
-								{
 									"_type": "UMLSeqLifelineView",
 									"_id": "AAAAAAF/UwZu9tq6Bww=",
 									"_parent": {
@@ -2906,54 +2857,6 @@
 							},
 							"name": "2_AddNewLibraryMemberDiagram",
 							"ownedViews": [
-								{
-									"_type": "UMLFrameView",
-									"_id": "AAAAAAF/UycMLd0jJlY=",
-									"_parent": {
-										"$ref": "AAAAAAF/UycMLd0iKwY="
-									},
-									"model": {
-										"$ref": "AAAAAAF/UycMLd0iKwY="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAF/UycMLd0krYM=",
-											"_parent": {
-												"$ref": "AAAAAAF/UycMLd0jJlY="
-											},
-											"font": "Arial;13;0",
-											"left": 32.72998046875,
-											"top": 5,
-											"width": 201.13525390625,
-											"height": 13,
-											"text": "2_AddNewLibraryMemberDiagram"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAF/UycMLd0lcoA=",
-											"_parent": {
-												"$ref": "AAAAAAF/UycMLd0jJlY="
-											},
-											"font": "Arial;13;1",
-											"left": 13,
-											"top": 5,
-											"width": 14.72998046875,
-											"height": 13,
-											"text": "sd"
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 8,
-									"width": 873,
-									"height": 545,
-									"nameLabel": {
-										"$ref": "AAAAAAF/UycMLd0krYM="
-									},
-									"frameTypeLabel": {
-										"$ref": "AAAAAAF/UycMLd0lcoA="
-									}
-								},
 								{
 									"_type": "UMLSeqLifelineView",
 									"_id": "AAAAAAF/UylH1d1hkmU=",
