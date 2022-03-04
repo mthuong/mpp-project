@@ -2,8 +2,6 @@ package business;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import business.*;
-
 public class CheckoutEntry implements Serializable {
 	private static final long serialVersionUID = 8343371890564600853L;
 	private BookCopy bookcopy;

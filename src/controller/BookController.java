@@ -17,13 +17,12 @@ public class BookController extends BaseController {
 
     public String checkoutBook(String memberID,String ISBN) throws CheckoutBookException{
         HashMap<String, String> errors = new HashMap<>();
-		Book book = this.getBook(ISBN);
         
         if (!checkExistingMemberId(memberID)) {
             errors.put("memberId", "Member id not found");
         }
 
-        if(book==null){
+        if(!checkBookExist(ISBN)){
             errors.put("book","Inncorrect book ISBN");
         }
 
@@ -31,11 +30,10 @@ public class BookController extends BaseController {
             throw new CheckoutBookException(errors);
         }
 
+        Book book = dataAccess.getBook(ISBN);
         LibraryMember member = dataAccess.getMember(memberID);
 
         BookCopy copy = null;
-
-        Boolean bookExist = false;
 	
         List<BookCopy> bc = book.getCopies();
         
@@ -61,13 +59,21 @@ public class BookController extends BaseController {
         dataAccess.saveNewBook(copy.getBook());
         return cr.toString();
     }
+
+    protected Boolean checkBookExist(String isbn){
+        Book book = dataAccess.getBook(isbn);
+       
+        if (book == null){
+            return false;
+        }
+       return true;
+    }
     
     protected Boolean checkExistingMemberId(String memberId) {
         
         LibraryMember member = dataAccess.getMember(memberId);
        
         if (member == null){
-            System.out.println("here");
             return false;
         }
        return true;
@@ -79,7 +85,7 @@ public class BookController extends BaseController {
     }
 
     public String addCopy(String ISBN) throws CheckoutBookException{
-        Book book = this.getBook(ISBN);
+        Book book = dataAccess.getBook(ISBN);
         HashMap<String, String> errors = new HashMap<>();
         if(book==null){
             errors.put("book","Inncorrect book ISBN");

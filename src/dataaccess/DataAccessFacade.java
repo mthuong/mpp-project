@@ -40,6 +40,11 @@ public class DataAccessFacade implements DataAccess {
 		return mems.get(memberId);
 	}
 
+	public Book getBook(String isbn) {
+		HashMap<String, Book>  booksMap = getBooksMap();
+		return booksMap.get(isbn);
+	}
+
 	@Override
 	public void saveNewBook(Book book) {
 		HashMap<String, Book> booksMap = getBooksMap();
