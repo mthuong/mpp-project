@@ -38,6 +38,19 @@ public class BookUI extends BaseUI {
                     throw new IllegalArgumentException("Enter a number to Max checkout length");
                 }
 
+                System.out.print("Enter number of book copies: ");
+                int numberOfCopies;
+
+                try {
+                    numberOfCopies = Integer.parseInt(in.nextLine());
+                } catch (Exception ex) {
+                    throw new IllegalArgumentException("Enter a number to Number of book copies");
+                }
+
+                if (numberOfCopies < 1) {
+                    throw new IllegalArgumentException("Number of book copies should be greater than 0");
+                }
+
                 List<Author> authors = new ArrayList<>();
                 while (true) {
                     System.out.print("Enter book author's first name: ");
@@ -73,7 +86,12 @@ public class BookUI extends BaseUI {
                     }
                 }
 
-                bookController.addNewBookHandler(new Book(isbn, title, maxCheckoutLength, authors));
+                Book book = new Book(isbn, title, maxCheckoutLength, authors);
+                for (int i = 0; i < numberOfCopies; i++) {
+                    book.addCopy();
+                }
+
+                bookController.addNewBookHandler(book);
                 System.out.println("Added a new book successfully!");break;
 
             } catch (IllegalArgumentException ex) {
