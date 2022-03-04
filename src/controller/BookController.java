@@ -61,7 +61,7 @@ public class BookController extends BaseController {
         return cr.toString();
     }
 
-    protected Boolean checkBookExist(String isbn){
+    private Boolean checkBookExist(String isbn){
         Book book = dataAccess.getBook(isbn);
        
         if (book == null){
@@ -70,7 +70,7 @@ public class BookController extends BaseController {
        return true;
     }
     
-    protected Boolean checkExistingMemberId(String memberId) {
+    private Boolean checkExistingMemberId(String memberId) {
         
         LibraryMember member = dataAccess.getMember(memberId);
        
@@ -102,7 +102,7 @@ public class BookController extends BaseController {
         return "Book: "+book.getTitle()+"\n"+"Copies: "+book.getCopies().size()+"\n"+"Added Copy: "+result;
     }
 
-    public Map<String, String> validate(Book book) {
+    private Map<String, String> validate(Book book) {
         Map<String, String> errors = new HashMap<>();
 
         if (book.getIsbn() == null || book.getIsbn().isEmpty()) {

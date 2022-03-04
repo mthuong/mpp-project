@@ -31,7 +31,7 @@ public class LibraryMemberController extends BaseController {
         return member;
     }
 
-    public HashMap<String, String> validateLibraryMemberInfo(LibraryMember member) {
+    private HashMap<String, String> validateLibraryMemberInfo(LibraryMember member) {
         HashMap<String, String> errors = new HashMap<>();
         if (member.getMemberId().isEmpty()) {
             errors.put("memberId", "Please enter member Id");
@@ -40,7 +40,7 @@ public class LibraryMemberController extends BaseController {
         return errors;
     }
 
-    protected HashMap<String, String> checkExistingMemberId(String memberId) {
+    private HashMap<String, String> checkExistingMemberId(String memberId) {
         LibraryMember member = dataAccess.getMember(memberId);
         if (member == null) return null;
 
