@@ -45,7 +45,7 @@ public class MainUI {
                 }
 
                 System.out.println("Please choose your action:" + functions);
-                int a = 0;
+                int a = -1;
 
                 try {
                     a = Integer.parseInt(in.nextLine());
