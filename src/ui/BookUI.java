@@ -124,7 +124,7 @@ public class BookUI extends BaseUI {
         } while (true);
     }
     void addBookCopy() {
-        System.out.println("Checking out a book ...");
+        System.out.println("Adding a book copy ...");
         do {
             try{
                 System.out.print("Enter ISBN: ");

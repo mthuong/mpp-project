@@ -45,7 +45,13 @@ public class MainUI {
                 }
 
                 System.out.println("Please choose your action:" + functions);
-                int a = in.nextInt();in.nextLine();
+                int a = 0;
+
+                try {
+                    a = Integer.parseInt(in.nextLine());
+                } catch (Exception ex) {
+                    System.out.println("Please enter a number");
+                }
 
                 switch (a) {
                     case 2: {
