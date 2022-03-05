@@ -126,11 +126,10 @@ public class BookController extends BaseController {
     }
 
     public List<OverdueData> getOverdueRecords(String isbn) throws RuntimeException {
-
         List<OverdueData> result = new ArrayList<>();
 
         Book book = dataAccess.getBook(isbn);
-        if (null == book) {
+        if (book == null) {
             throw new RuntimeException(String.format("Book ISBN [%s] is not existed.", isbn));
         }
         LocalDate today = LocalDate.now();
