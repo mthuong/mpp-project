@@ -1,10 +1,9 @@
 package ui;
 
-import business.Address;
-import business.Author;
-import business.Book;
+import business.*;
 import controller.BaseController;
 import controller.BookController;
+import controller.OverdueData;
 import exceptions.CheckoutBookException;
 import exceptions.MultipleErrorsException;
 
@@ -140,5 +139,35 @@ public class BookUI extends BaseUI {
                 handleErrors(e.getErrors());
             }
         } while (true);
+    }
+
+    void showOverdueRecords() {
+        System.out.println("Show overdue records");
+        while (true) {
+            System.out.print("Enter Book's ISBN: ");
+            String isbn = in.nextLine();
+
+            try {
+                System.out.println("-".repeat(134));
+                List<OverdueData> overdueRecords = bookController.getOverdueRecords(isbn);
+                if (overdueRecords == null || overdueRecords.isEmpty()) {
+                    System.out.println("No records");
+                } else {
+                    System.out.println("Book's ISBN: " + isbn);
+                    System.out.println("Book's title: " + overdueRecords.get(0).getBookTitle());
+                    System.out.println();
+                    System.out.printf("%10s %30s %70s %20s", "BOOK COPY NUMBER", "LIBRARY MEMBER", "CHECKOUT DATE", "DUE DATE");
+                    System.out.println();
+                    for (OverdueData overdueData : overdueRecords) {
+                        System.out.format("%10s %30s %70s %20s", overdueData.getCopyNum(), overdueData.getMemberID(), overdueData.getCheckoutDate(), overdueData.getDueDate());
+                        System.out.println();
+                    }
+                }
+                System.out.println("-".repeat(134));
+                break;
+            } catch (Exception ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+        }
     }
 }

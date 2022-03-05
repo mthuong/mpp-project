@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import business.Book;
@@ -122,5 +123,37 @@ public class BookController extends BaseController {
         }
 
         return errors;
+    }
+
+    public List<OverdueData> getOverdueRecords(String isbn) throws RuntimeException {
+
+        List<OverdueData> result = new ArrayList<>();
+
+        Book book = dataAccess.getBook(isbn);
+        if (null == book) {
+            throw new RuntimeException(String.format("Book ISBN [%s] is not existed.", isbn));
+        }
+        LocalDate today = LocalDate.now();
+        Map<String, LibraryMember> memberMap = dataAccess.getMemberMap();
+        for (LibraryMember member: memberMap.values()) {
+            if (member.getRecord() == null) continue;
+            List<CheckoutEntry> entries = member.getRecord().getEntries();
+            for (CheckoutEntry entry: entries) {
+                BookCopy bookCopy = entry.getBookCopy();
+                if (entry.getDueDate().isBefore(today) && !bookCopy.checkAvailable()
+                        && bookCopy.getBook().getIsbn().equals(isbn)) {
+                    String bookTitle = book.getTitle();
+                    String copyNumber = bookCopy.getCopyNumber();
+                    String memberID = member.getMemberId();
+                    LocalDate checkoutDate = entry.getCheckoutDate();
+                    LocalDate dueDate = entry.getDueDate();
+
+                    OverdueData data = new OverdueData(bookTitle, copyNumber, memberID, checkoutDate, dueDate);
+                    result.add(data);
+                }
+            }
+        }
+
+        return result;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public class Permission {
     public enum PermissionID {
         AddNewLibraryMember("2"), CheckoutBook("3"), AddCopyOfExistingBook("4"), AddABook("5"),
-        PrintCheckoutRecord("6"), Logout("0");
+        PrintCheckoutRecord("6"), ShowOverdueRecord("7"), Logout("0");
 
         private String value;
 

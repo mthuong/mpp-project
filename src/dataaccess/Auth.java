@@ -15,6 +15,7 @@ public enum Auth implements Serializable {
 			case LIBRARIAN: {
 				permissions.add(new Permission(Permission.PermissionID.CheckoutBook, "Checkout a book for a library member"));
 				permissions.add(new Permission(Permission.PermissionID.PrintCheckoutRecord, "Print the checkout record of library member"));
+				permissions.add(new Permission(Permission.PermissionID.ShowOverdueRecord, "Show overdue records of a book"));
 				break;
 			}
 
@@ -31,6 +32,7 @@ public enum Auth implements Serializable {
 				permissions.add(new Permission(Permission.PermissionID.AddCopyOfExistingBook, "Add a copy of an existing book to the library collection."));
 				permissions.add(new Permission(Permission.PermissionID.AddABook, "Add a book to the library collection."));
 				permissions.add(new Permission(Permission.PermissionID.PrintCheckoutRecord, "Print the checkout record of library member"));
+				permissions.add(new Permission(Permission.PermissionID.ShowOverdueRecord, "Show overdue records of a book"));
 				break;
 			}
 		}

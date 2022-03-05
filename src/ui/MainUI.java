@@ -82,6 +82,11 @@ public class MainUI {
                         break;
                     }
 
+                    case 7: {
+                        bookUI.showOverdueRecords();
+                        break;
+                    }
+
                     case 0: {
                         // Logout
                         authorizationLevel = null;
