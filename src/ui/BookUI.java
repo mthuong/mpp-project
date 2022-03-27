@@ -156,10 +156,11 @@ public class BookUI extends BaseUI {
                     System.out.println("Book's ISBN: " + isbn);
                     System.out.println("Book's title: " + overdueRecords.get(0).getBookTitle());
                     System.out.println();
-                    System.out.printf("%10s %30s %70s %20s", "BOOK COPY NUMBER", "LIBRARY MEMBER", "CHECKOUT DATE", "DUE DATE");
+                    String format = "%40s %30s %20s %20s";
+                    System.out.printf(format, "BOOK COPY NUMBER", "LIBRARY MEMBER", "CHECKOUT DATE", "DUE DATE");
                     System.out.println();
                     for (OverdueData overdueData : overdueRecords) {
-                        System.out.format("%10s %30s %70s %20s", overdueData.getCopyNum(), overdueData.getMemberID(), overdueData.getCheckoutDate(), overdueData.getDueDate());
+                        System.out.format(format, overdueData.getCopyNum(), overdueData.getMemberID(), overdueData.getCheckoutDate(), overdueData.getDueDate());
                         System.out.println();
                     }
                 }
